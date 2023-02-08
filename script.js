@@ -3,17 +3,16 @@ const library = [];
 
 let count = 0;
 
-class Book {
-   constructor(title, author, pages, isread, bookid) {
-      this.title = title;
-      this.author = author;
-      this.pages = pages;
-      this.isread = isread;
-      this.bookid = bookid;
-   }
-}
-
 function addBook() {
+   class Book {
+      constructor(title, author, pages, isread, bookid) {
+         this.title = title;
+         this.author = author;
+         this.pages = pages;
+         this.isread = isread;
+         this.bookid = bookid;
+      }
+   }
    const $author = document.getElementById("Author").value;
    const $title = document.getElementById("Title").value;
    const $pages = document.getElementById("Pages").value;
@@ -27,8 +26,8 @@ function addBook() {
 
    // creates div and assigns it a class based on how many divs there are //
    const divdiv = document.createElement("div");
-   const idName = "A" + count;
-   divdiv.setAttribute("id", idName);
+   // const idName = "A" + count;
+   divdiv.setAttribute("id", bookID);
 
    // creates the title in the div //
    const divtitle = document.createElement("h5");
@@ -63,16 +62,16 @@ function addBook() {
    const removebutton = document.createElement("button");
    removebutton.innerText = "Remove Book";
    removebutton.addEventListener("click", function () {
-      for (let i = 0; i <= library.length; i++) {
-         if (library[i].bookid === bookID) {
-            library.slice(i, 1);
-            document.getElementById(idName).remove();
+      for (let i = 0; i < library.length; i++) {
+         if (library[i].bookid === document.getElementById(bookID).id) {
+            library.splice(i, 1);
+            document.getElementById(bookID).remove();
          }
       }
    });
    divdiv.appendChild(removebutton);
    count = count + 1;
+
    // adds the div to the page //
    document.getElementById("books").appendChild(divdiv);
-   console.log(document.getElementById(idRead).innerText);
 }
